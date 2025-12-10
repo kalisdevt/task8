@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" defer crossorigin="anonymous"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    
+    <div class="container">
+        <button id="openModal" class="btn mt-4 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Открыть форму</button>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Форма</h1>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="ФИО" class="form-control" id="fio">
+                    <input type="text" class="mt-2 form-control" placeholder="Email" class="form-control" id="email">
+                    <input type="text" class="mt-2 form-control" placeholder="Телефон" type="tel" class="form-control" id="tel">
+                    <input type="text" class="mt-2 form-control" placeholder="Организация" class="form-control" id="organization">
+                    <textarea class="mt-2 form-control" placeholder="Сообщение" id="message"></textarea>
+                    <label class="form-label mt-3">
+                        <input type="checkbox" id="agree" class="form-check-input" >
+                        Даю согласие на обработку персональных данных
+                    </label>
+                    <div class="alert alert-danger d-none" id="alert" role="alert">
+                        Введены не все данные
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Закрыть и очистить</button>
+                    <button type="button" class="btn btn-primary" id="sendForm">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
