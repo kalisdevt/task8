@@ -26,22 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     sendForm.addEventListener('click', async function () {
+        alert.classList.add('d-none');
+        
         const fi = fio.value;
         const em = email.value;
         const me = message.value;
         const te = tel.value;
         const org = organization.value;
         const ag = agree.checked;
-        
-        if (!fi || !em || !te || !org || !ag) {
-            return alert.classList.remove('d-none');
-        }
 
         localStorage.setItem('fio', fi);
         localStorage.setItem('email', em);
         localStorage.setItem('message', me);
         localStorage.setItem('telephone', te);
         localStorage.setItem('organization', org);
+        
+        if (!fi || !em || !te || !org || !ag) {
+            return alert.classList.remove('d-none');
+        }
 
         const response = await fetch("https://formcarry.com/s/hgoSGlL_9rh", {
             method: 'POST',
@@ -62,4 +64,5 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.removeItem('organization');
         fio.value = email.value = organization.value = message.value = tel.value = '';
     });
+
 });
