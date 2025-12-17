@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     let openModal = document.getElementById('openModal');
     let closeModal = document.getElementById('closeModal');
@@ -9,20 +10,46 @@ document.addEventListener('DOMContentLoaded', function() {
     let agree = document.getElementById('agree');
     let sendForm = document.getElementById('sendForm');
     let alert = document.getElementById('alert');
+    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
 
+    });
+
+    if (document.location.href.includes('?forma=open')) {
+        myModal.show();
+    } else {
+        myModal.hide();
+    }
+    
     fio.value = localStorage.getItem('fio');
     email.value = localStorage.getItem('email');
     tel.value = localStorage.getItem('telephone');
     organization.value = localStorage.getItem('organization');
     message.value = localStorage.getItem('message');
 
+    fio.addEventListener('input', saveInStore);
+    email.addEventListener('input', saveInStore);
+    tel.addEventListener('input', saveInStore);
+    organization.addEventListener('input', saveInStore);
+    message.addEventListener('input', saveInStore);
+    
+    onpopstate = (event) => {
+        console.log('chhh')
+        console.log(document.location);
 
+        if (document.location.href.includes('?forma=open')) {
+            myModal.show();
+        } else {
+            myModal.hide();
+        }
+    };
+    
     openModal.addEventListener('click', () => {
-        window.history.pushState({ page: 1 }, 'title1', '?forma=open');
+        history.pushState({ page: 1 }, '', '?forma=open');
+        onpopstate();
     });
 
     closeModal.addEventListener('click', () => {
-        window.history.back();
+        history.back();
     });
 
     sendForm.addEventListener('click', async function () {
@@ -34,12 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const te = tel.value;
         const org = organization.value;
         const ag = agree.checked;
-
-        localStorage.setItem('fio', fi);
-        localStorage.setItem('email', em);
-        localStorage.setItem('message', me);
-        localStorage.setItem('telephone', te);
-        localStorage.setItem('organization', org);
         
         if (!fi || !em || !te || !org || !ag) {
             return alert.classList.remove('d-none');
@@ -55,7 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         const data = await response.json();
-        console.log(data);
+        
+        if (data.code == 200) {
+            alert.innerHTML = 'Данные отправлены успешно';
+            alert.classList.remove('alert-danger');
+            alert.classList.add('alert-success');
+            alert.classList.remove('d-none');
+
+        }
 
         localStorage.removeItem('fio');
         localStorage.removeItem('email');
@@ -65,4 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
         fio.value = email.value = organization.value = message.value = tel.value = '';
     });
 
+    function saveInStore () {
+        const fi = fio.value;
+        const em = email.value;
+        const me = message.value;
+        const te = tel.value;
+        const org = organization.value;
+        const ag = agree.checked;
+
+        localStorage.setItem('fio', fi);
+        localStorage.setItem('email', em);
+        localStorage.setItem('message', me);
+        localStorage.setItem('telephone', te);
+        localStorage.setItem('organization', org);
+    }
 });

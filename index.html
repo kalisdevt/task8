@@ -11,10 +11,10 @@
 <body>
     
     <div class="container">
-        <button id="openModal" class="btn mt-4 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Открыть форму</button>
+        <button id="openModal" class="btn mt-4 btn-primary">Открыть форму</button>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Закрыть и очистить</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModal">Закрыть</button>
                     <button type="button" class="btn btn-primary" id="sendForm">Отправить</button>
                 </div>
             </div>
